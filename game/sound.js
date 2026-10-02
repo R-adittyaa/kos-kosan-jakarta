@@ -16,16 +16,19 @@ export function playSfx(type) {
   if (audioCtx.state === 'suspended') audioCtx.resume();
 
   const now = audioCtx.currentTime;
-  const presets = {
-  click:   { freq: 600, wave: 'square',   dur: 0.08 },
-  coin:    { freq: 900, wave: 'triangle', dur: 0.15, slide: 1400 },
-  error:   { freq: 200, wave: 'sawtooth', dur: 0.25 },
-  door:    { freq: 400, wave: 'sine',     dur: 0.4,  slide: 200 },
-  levelup: { freq: 500, wave: 'triangle', dur: 0.5,  slide: 1200 },
-  dialog:  { freq: 700, wave: 'sine',     dur: 0.05 },
-  bad:     { freq: 150, wave: 'sawtooth', dur: 0.35, slide: 100 },
-  tick:    { freq: 800, wave: 'square',   dur: 0.06, slide: 400 },  // ← BARU
-  dayEnd:  { freq: 300, wave: 'sine',     dur: 0.6,  slide: 500 },  // ← BARU
+ const presets = {
+  click:     { freq: 600, wave: 'square',   dur: 0.08 },
+  coin:      { freq: 900, wave: 'triangle', dur: 0.15, slide: 1400 },
+  coin_big:  { freq: 700, wave: 'triangle', dur: 0.25, slide: 1800 },
+  error:     { freq: 200, wave: 'sawtooth', dur: 0.25 },
+  bad:       { freq: 150, wave: 'sawtooth', dur: 0.35, slide: 100 },
+  door:      { freq: 400, wave: 'sine',     dur: 0.4,  slide: 200 },
+  levelup:   { freq: 500, wave: 'triangle', dur: 0.5,  slide: 1200 },
+  achievement: { freq: 800, wave: 'triangle', dur: 0.6, slide: 1600 },
+  dialog:    { freq: 700, wave: 'sine',     dur: 0.05 },
+  tick:      { freq: 800, wave: 'square',   dur: 0.06, slide: 400 },
+  dayEnd:    { freq: 300, wave: 'sine',     dur: 0.6,  slide: 500 },
+  upgrade:   { freq: 400, wave: 'triangle', dur: 0.8,  slide: 2000 },
 };
 
   const p = presets[type] || presets.click;

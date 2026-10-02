@@ -13,8 +13,8 @@ export function createGameConfig(Phaser) {
 
   return {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     backgroundColor: '#0f172a',
     scale: {
       mode: Phaser.Scale.FIT,

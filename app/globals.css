@@ -2,62 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== RESET & BASE ===== */
-html,
-body {
-  overflow-x: hidden;
-  min-height: 100%;
-  padding: 0;
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
   margin: 0;
+  padding: 0;
 }
 
 body {
-  background: radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
-              #0f172a;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0e1a;
   color: #f1f5f9;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
 }
 
-/* ===== GAME CONTAINER ===== */
+/* Fix centering — flex + fix inset */
 #game-container {
-  width: 100%;
-  max-width: 800px;
-  aspect-ratio: 4 / 3;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0e1a;
+  margin: 0;
+  padding: 0;
 }
 
 #game-container canvas {
   display: block;
-  width: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto !important;
   height: auto !important;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-              0 0 0 1px rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  box-shadow: none;
+  touch-action: manipulation;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
-/* ===== SCROLLBAR (opsional, biar cakep) ===== */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* ===== SELECTION (opsional) ===== */
 ::selection {
   background: #6366f1;
   color: white;
