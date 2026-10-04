@@ -15,11 +15,12 @@ export default function PhaserGame() {
       const Phaser = (await import('phaser')).default;
       if (!mounted || gameRef.current) return;
 
-      // Tunggu font Google selesai load sebelum Phaser init
+      // Tunggu font Google max 2 detik, biar ga stuck kalau gagal
       if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch {}
+        await Promise.race([
+          document.fonts.ready,
+          new Promise((resolve) => setTimeout(resolve, 2000)),
+        ]);
       }
 
       const config = createGameConfig(Phaser);
@@ -28,17 +29,6 @@ export default function PhaserGame() {
         parent: containerRef.current,
       });
       gameRef.current = game;
-
-      // Paksa canvas style setelah Phaser init
-      setTimeout(() => {
-        const canvas = containerRef.current?.querySelector('canvas');
-        if (canvas) {
-          canvas.style.maxWidth = '100vw';
-          canvas.style.maxHeight = '100dvh';
-          canvas.style.width = 'auto';
-          canvas.style.height = 'auto';
-        }
-      }, 100);
     })();
 
     return () => {
